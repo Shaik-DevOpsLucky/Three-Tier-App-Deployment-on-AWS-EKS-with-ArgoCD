@@ -191,6 +191,13 @@ sudo apt-get install jenkins -y
     - <b>Credentials:</b> <mark>Add --> Kind: ssh username with private key --> ID: Worker --> Description: Worker --> Username: root --> Private key: Enter directly --> Add Private key</mark>
     - <b>Host Key Verification Strategy:</b> Non verifying Verification Strategy
     - <b>Availability:</b> Keep this agent online as much as possible
+In Worker node </mark>
+    - Copy Public Key to Worker Node
+      nano /etc/ssh/sshd_config
+    - Find and modify these lines:
+    - - PermitRootLogin prohibit-password
+      + PermitRootLogin yes
+ 
 #
   - And your jenkins worker node is added
   ![image](https://github.com/user-attachments/assets/cab93696-a4e2-4501-b164-8287d7077eef)
