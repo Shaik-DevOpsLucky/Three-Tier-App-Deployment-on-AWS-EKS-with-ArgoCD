@@ -197,6 +197,7 @@ In Worker node </mark>
     - Find and modify these lines:
     - - PermitRootLogin prohibit-password to
       + PermitRootLogin yes
+      + systemctl restart ssh
  
 #
   - And your jenkins worker node is added
