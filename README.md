@@ -59,7 +59,7 @@ WanderLust is a simple MERN travel blog website ✈ This project is aimed to hel
 > [!Note]
 > This project will be implemented on North California region (us-west-1).
 
-- <b>Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t2.large) and 29 GB of storage and install Docker on it.</b>
+- <b>Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t3.small) and 29 GB of storage and install Docker on it.</b>
 #
 - <b>Open the below ports in security group of master machine and also attach same security group to Jenkins worker node (We will create worker node shortly)</b>
 ![image](https://github.com/user-attachments/assets/4e5ecd37-fe2e-4e4b-a6ba-14c7b62715a3)
@@ -123,23 +123,23 @@ sudo apt-get install jenkins -y
   - <b>Create EKS Cluster (Master machine)</b>
   ```bash
   eksctl create cluster --name=wanderlust \
-                      --region=us-east-2 \
+                      --region=us-west-2 \
                       --version=1.30 \
                       --without-nodegroup
   ```
   - <b>Associate IAM OIDC Provider (Master machine)</b>
   ```bash
   eksctl utils associate-iam-oidc-provider \
-    --region us-east-2 \
+    --region us-west-2 \
     --cluster wanderlust \
     --approve
   ```
   - <b>Create Nodegroup (Master machine)</b>
   ```bash
   eksctl create nodegroup --cluster=wanderlust \
-                       --region=us-east-2 \
+                       --region=us-west-2 \
                        --name=wanderlust \
-                       --node-type=t2.large \
+                       --node-type=t3.small \
                        --nodes=2 \
                        --nodes-min=2 \
                        --nodes-max=2 \
@@ -151,7 +151,7 @@ sudo apt-get install jenkins -y
 >  Make sure the ssh-public-key "eks-nodegroup-key is available in your aws account"
 #
 - <b id="Jenkins-worker">Setting up jenkins worker node</b>
-  - Create a new EC2 instance (Jenkins Worker) with 2CPU, 8GB of RAM (t2.large) and 29 GB of storage and install java on it
+  - Create a new EC2 instance (Jenkins Worker) with 2CPU, 8GB of RAM (t3.small) and 29 GB of storage and install java on it
   ```bash
   sudo apt update -y
   sudo apt install fontconfig openjdk-17-jre -y
