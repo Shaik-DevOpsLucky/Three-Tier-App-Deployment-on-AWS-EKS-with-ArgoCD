@@ -195,7 +195,7 @@ In Worker node </mark>
     - Copy Public Key to Worker Node
       nano /etc/ssh/sshd_config
     - Find and modify these lines:
-    - - PermitRootLogin prohibit-password
+    - - PermitRootLogin prohibit-password to
       + PermitRootLogin yes
  
 #
